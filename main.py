@@ -24,7 +24,8 @@ def main():
         pron = "ILLVD/They"
     try:
         date_born_input = input("您的出生日期是?(格式: 2022.1.1) ")
-        date_born_parse = datetime.datetime.strptime(date_born_input, "%Y.%m.%d")
+        date_born_parse = datetime.datetime.strptime(
+            date_born_input, "%Y.%m.%d")
         date_born = date_born_parse.strftime("%Y / %m %b / %d").upper()
     except:
         print("您输入的日期格式不正确。")
@@ -35,40 +36,40 @@ def main():
     id_1 += "<" * (44 - len(id_1))
     id_2 = eth_addr + "<" * 2
     qr = qrcode.QRCode(version=1,
-                   box_size=4,
-                   border=0)
+                       box_size=4,
+                       border=0)
     qr.add_data(eth_addr)
     qr_img = qr.make_image(fill_color=(0, 0, 0),
-                       back_color="transparent")
+                           back_color="transparent")
     qr.make(fit=True)
     date_now = datetime.datetime.now().strftime("%Y / %m %b / %d").upper()
 
     f_number = ImageFont.truetype("data-latin.ttf", size=60)
     f_text = ImageFont.truetype("SourceSansPro-Semibold.otf", size=35)
     f_id = ImageFont.truetype(
-    "JetBrainsMono-Regular.ttf", size=50, layout_engine=ImageFont.LAYOUT_BASIC)
+        "JetBrainsMono-Regular.ttf", size=50, layout_engine=ImageFont.LAYOUT_BASIC)
     im = Image.open("background.png")
     mask = Image.open("mask.png")
     head = Image.open("head.png")  # 照片
 
     imd = ImageDraw.ImageDraw(im)
     imd.text((1147, 175), eth_addr[2:6] + eth_addr[38:42], font=f_number,
-         fill=(244, 62, 66))  # BTH地址首末
+             fill=(244, 62, 66))  # BTH地址首末
     imd.text((500, 292), name, font=f_text, fill=(0, 0, 0))  # 名字
     imd.text((1004, 292), pron, font=f_text, fill=(0, 0, 0))  # 代词
     imd.text((500, 510), date_born,
-         font=f_text, fill=(0, 0, 0))  # 出生日期
+             font=f_text, fill=(0, 0, 0))  # 出生日期
     imd.text((1004, 510), place, font=f_text, fill=(0, 0, 0))  # 出生地点
     imd.text((500, 615), date_now,
-         font=f_text, fill=(0, 0, 0))  # 签发日期
+             font=f_text, fill=(0, 0, 0))  # 签发日期
     imd.text((88, 794), id_1,
-         font=f_id, fill=(0, 0, 0))  # 签发日期
+             font=f_id, fill=(0, 0, 0))  # 签发日期
     imd.text((88, 874), id_2,
-         font=f_id, fill=(0, 0, 0))  # 签发日期
-    head = head.resize((356,486))
+             font=f_id, fill=(0, 0, 0))  # 签发日期
+    head = head.resize((356, 486))
 
     im.paste(qr_img, (1270, 20), mask=qr_img)
-    im.alpha_composite(head,(105,221))
+    im.alpha_composite(head, (105, 221))
     im.alpha_composite(mask)
 
     im.save("out.png")
