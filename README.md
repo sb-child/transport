@@ -31,3 +31,4 @@ python3 main.py
 
 注：因此，请提前将自己的头像剪切为`4:5`格式，如需上方留有空白请提前预留。
 
+![image](https://user-images.githubusercontent.com/96931510/191689366-ff74e9d0-d097-4eac-a535-7877eb1f93dd.png)
