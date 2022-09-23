@@ -22,11 +22,16 @@ def main():
         pron = "ILLE/He"
     else:
         pron = "ILLVD/They"
-    date_born_input = input("您的出生日期是?(格式: 2022.1.1) ")
-    date_born_parse = datetime.datetime.strptime(date_born_input, "%Y.%m.%d")
-    date_born = date_born_parse.strftime("%Y / %m %b / %d").upper()
+    try:
+        date_born_input = input("您的出生日期是?(格式: 2022.1.1) ")
+        date_born_parse = datetime.datetime.strptime(
+            date_born_input, "%Y.%m.%d")
+        date_born = date_born_parse.strftime("%Y / %m %b / %d").upper()
+    except:
+        print("您输入的日期格式不正确。")
+        return
     place = input("您在何处出生? ")
-    
+
     id_1 = "P<TGD" + name.replace(" ", "<")
     id_1 += "<" * (44 - len(id_1))
     id_2 = eth_addr + "<" * 2
@@ -38,7 +43,7 @@ def main():
                            back_color="transparent")
     qr.make(fit=True)
     date_now = datetime.datetime.now().strftime("%Y / %m %b / %d").upper()
-    
+
     f_number = ImageFont.truetype("data-latin.ttf", size=60)
     f_text = ImageFont.truetype("SourceSansPro-Semibold.otf", size=35)
     f_id = ImageFont.truetype(
@@ -61,9 +66,10 @@ def main():
              font=f_id, fill=(0, 0, 0))  # 签发日期
     imd.text((88, 874), id_2,
              font=f_id, fill=(0, 0, 0))  # 签发日期
+    head = head.resize((356, 486))
 
     im.paste(qr_img, (1270, 20), mask=qr_img)
-    im.alpha_composite(head)
+    im.alpha_composite(head, (105, 221))
     im.alpha_composite(mask)
 
     im.save("out.png")
