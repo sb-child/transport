@@ -24,7 +24,7 @@ python3 main.py
 
 ## todo
 
-+ [x] 自定义头像(直接更改`head.png`) #1
++ [x] 自定义头像(直接更改`head.png`) https://github.com/sb-child/transport/pull/1
 
 ## license
 
