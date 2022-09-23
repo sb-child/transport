@@ -24,7 +24,7 @@ python3 main.py
 
 ## todo
 
-+ ~~自定义头像~~ 您甚至可以直接更改`head.png`
++ [x] 自定义头像(直接更改`head.png`) #1
 
 ## license
 
