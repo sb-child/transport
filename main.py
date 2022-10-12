@@ -27,8 +27,10 @@ def main():
         date_born_parse = datetime.datetime.strptime(
             date_born_input, "%Y.%m.%d")
         date_born = date_born_parse.strftime("%Y / %m %b / %d").upper()
-    except:
-        print("您输入的日期格式不正确。")
+    except KeyboardInterrupt as e:
+        raise e
+    except Exception as e:
+        print("您输入的日期格式不正确:", e)
         return
     place = input("您在何处出生? ")
 
