@@ -41,33 +41,32 @@ def main():
                        box_size=4,
                        border=0)
     qr.add_data(eth_addr)
-    qr_img = qr.make_image(fill_color=(0, 0, 0),
+    qr_img = qr.make_image(fill_color="black",
                            back_color="transparent")
     qr.make(fit=True)
     date_now = datetime.datetime.now().strftime("%Y / %m %b / %d").upper()
 
     f_number = ImageFont.truetype("data-latin.ttf", size=60)
     f_text = ImageFont.truetype("SourceSansPro-Semibold.otf", size=35)
-    f_id = ImageFont.truetype(
-        "JetBrainsMono-Regular.ttf", size=50, layout_engine=ImageFont.LAYOUT_BASIC)
+    f_id = ImageFont.truetype("JetBrainsMono-Regular.ttf", size=50)
     im = Image.open("background.png")
     mask = Image.open("mask.png")
     head = Image.open("head.png")  # 照片
 
     imd = ImageDraw.ImageDraw(im)
     imd.text((1147, 175), eth_addr[2:6] + eth_addr[38:42], font=f_number,
-             fill=(244, 62, 66))  # BTH地址首末
-    imd.text((500, 292), name, font=f_text, fill=(0, 0, 0))  # 名字
-    imd.text((1004, 292), pron, font=f_text, fill=(0, 0, 0))  # 代词
+             fill="#ff9ea8")  # BTH地址首末
+    imd.text((500, 292), name, font=f_text, fill="black")  # 名字
+    imd.text((1004, 292), pron, font=f_text, fill="black")  # 代词
     imd.text((500, 510), date_born,
-             font=f_text, fill=(0, 0, 0))  # 出生日期
-    imd.text((1004, 510), place, font=f_text, fill=(0, 0, 0))  # 出生地点
+             font=f_text, fill="black")  # 出生日期
+    imd.text((1004, 510), place, font=f_text, fill="black")  # 出生地点
     imd.text((500, 615), date_now,
-             font=f_text, fill=(0, 0, 0))  # 签发日期
+             font=f_text, fill="black")  # 签发日期
     imd.text((88, 794), id_1,
-             font=f_id, fill=(0, 0, 0))  # 签发日期
+             font=f_id, fill="black")  # 签发日期
     imd.text((88, 874), id_2,
-             font=f_id, fill=(0, 0, 0))  # 签发日期
+             font=f_id, fill="black")  # 签发日期
     head = head.resize((356, 486))
 
     im.paste(qr_img, (1270, 20), mask=qr_img)
