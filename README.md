@@ -2,7 +2,7 @@
 
 ![img](example.png)
 
-<sub>对了，我们永远怀念逝去的 starmoe 姐姐...</sub>
+<sub>对了，我们永远怀念逝去的 [starmoe](https://github.com/Bro-Xun) 姐姐...</sub>
 
 ## 准备您的头像
 
